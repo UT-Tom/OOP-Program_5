@@ -1,4 +1,4 @@
-```
+
 #pragma once
 #include<iostream>
 using namespace std;
@@ -32,4 +32,3 @@ private:
 	Node* Rear;
 
 };
-```
