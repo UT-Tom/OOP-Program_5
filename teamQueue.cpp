@@ -10,7 +10,13 @@ teamQueue::teamQueue()
 	Front = Rear = NULL;
 }
 
-//Checks if queue is empty
+/**
+ *  MethodName: Empty()
+ *  Desctription: Checks if queue is empty
+ *  Parameters: n/a
+ *  Returns: bool - empty or not
+**/
+
 bool teamQueue:: Empty() 
 {
 	return Front == NULL;
