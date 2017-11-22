@@ -12,17 +12,21 @@ teamQueue::teamQueue()
 
 /**
  *  MethodName: Empty()
- *  Desctription: Checks if queue is empty
+ *  Description: Checks if queue is empty
  *  Parameters: n/a
  *  Returns: bool - empty or not
 **/
-
 bool teamQueue:: Empty() 
 {
 	return Front == NULL;
 }
 
-//Adds an item to queue next to its team member
+/**
+ *  MethodName: enqueue()
+ *  Description: Adds an item to queue next to its team member
+ *  Parameters: int val - a number
+ *  Returns: void
+**/
 void teamQueue:: enqueue(int val)
 {
 	Node* Temp = new Node;
@@ -39,8 +43,13 @@ void teamQueue:: enqueue(int val)
 		Rear = Temp;
 	}
 }
+/**
+ *  MethodName: dequeue()
+ *  Description: Removes front item in queue
+ *  Parameters: n/a
+ *  Returns: int - number at the front of queue
+**/
 
-//Removes front item in queue
 int teamQueue:: dequeue()
 {
 	int TempData = Front->Data;
