@@ -57,11 +57,14 @@ void teamQueue:: enqueue(int val,int team)
 	}
 	else
 	{
-		
+		//Updates pointer to find if there is a Node 
+		//with the same team as Temp
 		while (Temp->ID != curr->ID && curr->Next != NULL)
 		{
 				curr = curr->Next;			
 		}
+
+		//If Temp has the same team as a Node
 		if (curr->ID == Temp->ID)
 		{
 			Node *prev = curr;
@@ -78,6 +81,7 @@ void teamQueue:: enqueue(int val,int team)
 				}
 			}
 		}
+		//If Temp has no team members
 		else
 		{
 			Rear->Next = Temp;
