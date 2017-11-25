@@ -1,3 +1,4 @@
+//teamQueue.h
 
 #pragma once
 #include<iostream>
@@ -6,6 +7,7 @@ using namespace std;
 struct Node
 {
 	int Data;
+	int ID;
 	Node* Next;
 };
 
@@ -20,15 +22,19 @@ public:
 	bool Empty();
 
 	//Adds an item to queue
-	void enqueue(int val);
+	void enqueue(int,int);
 
 	//Removes an item from queue
 	int dequeue();
 	
 	//Prints out queue
 	void Print();
+
+	//Destructor
+	~teamQueue();
 private:
 	Node* Front;
 	Node* Rear;
+	Node *curr;
 
 };
