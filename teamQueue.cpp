@@ -67,12 +67,28 @@ void teamQueue:: enqueue(int val,int team)
 		//If Temp has the same team as a Node
 		if (curr->ID == Temp->ID)
 		{
-			Node *prev = curr;
-			curr = curr->Next;
+			Node *prev = new Node();
 
-			prev->Next = Temp;
-			Temp->Next = curr;
+			//If first node is team member of temp
+			if (curr->Next == NULL)
+			{
+				Rear->Next = Temp;
+				Rear = Temp;
+			}
+			else
+			{
+				//Finds last node of the same team
+				while (curr->ID == Temp->ID && curr->Next != NULL)
+				{
+					prev = curr;
+					curr = curr->Next;
+				}
 
+				prev->Next = Temp;
+				Temp->Next = curr;
+			}
+
+			//Moves rear to back of queue if it is not already there
 			if (Rear->Next != NULL)
 			{
 				while (Rear->Next != NULL)
