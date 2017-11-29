@@ -69,7 +69,7 @@ void teamQueue:: enqueue(int val,int team)
 		{
 			Node *prev = new Node();
 
-			//If first node is team member of temp
+			//If first/last node is team member of temp
 			if (curr->Next == NULL)
 			{
 				Rear->Next = Temp;
@@ -84,8 +84,19 @@ void teamQueue:: enqueue(int val,int team)
 					curr = curr->Next;
 				}
 
-				prev->Next = Temp;
-				Temp->Next = curr;
+				//If current node is at end of queue and is on the same team
+				if (curr->Next == NULL && curr->ID == Temp->ID)
+				{
+					Rear->Next = Temp;
+					Rear = Temp;
+				}
+				//Inserts in middle of queue
+				else
+				{
+					prev->Next = Temp;
+					Temp->Next = curr;
+				}
+				
 			}
 
 			//Moves rear to back of queue if it is not already there
