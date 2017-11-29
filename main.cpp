@@ -4,17 +4,19 @@
 #include"teamQueue.h"
 using namespace std;
 
+//Max number of members on team
+int const MAXITEMS = 100;
+
 void closeFiles(ifstream&, ofstream&);
 void freeArray(int**&,int);
-int getTeamNum(int**&,int,int,int);
-void initTeams(ifstream&,int**&,int&,int&);
-void initQueue(ifstream&, teamQueue*&,int**&,int,int);
+int getTeamNum(int**&,int,int);
+void initTeams(ifstream&,int**&,int&);
+void initQueue(ifstream&, teamQueue*&,int**&,int);
 void openFiles(ifstream&, ofstream&);
 
 int main()
 {
-	int t = 1;
-	int tMembers;
+	int t;
 
 	//open files
 	ifstream infile;
@@ -25,31 +27,32 @@ int main()
 	int **team;
 
 	//Initializes team array
-	initTeams(infile, team, t, tMembers);
+	initTeams(infile, team, t);
 
-
+	
+	//Loops until t is 0
 	while (t != 0)
 	{
 		//Initializes teamQueue
 		teamQueue *Q = new teamQueue();
 
 		//Adds or removes items to teamQueue
-		initQueue(infile, Q, team, t, tMembers);
+		initQueue(infile, Q, team, t);
 
 		Q->Print();
 
-		//Free up memory
+		//Frees memory of team
 		freeArray(team, t);
 
+
 		//Initializes team array
-		initTeams(infile, team, t, tMembers);
-
-
+		initTeams(infile, team, t);	
 	}
-
+	 
 	//closes files
 	closeFiles(infile, outfile);
 
+	system("pause");
 	return 0;
 }
 
@@ -82,10 +85,9 @@ void closeFiles(ifstream &ifile, ofstream &ofile)
 void freeArray(int **&team,int row)
 {
 	for (int i = 0; i < row; i++)
-	{ //Delete subchildren of array
+	{
 		delete[] team[i];
 	}
-	//Delete rest of array
 	delete[] team;
 }
 
@@ -98,15 +100,14 @@ void freeArray(int **&team,int row)
 *    int **&team - refernce to 2D array
 *	 int target - item being searched for
 *    int t - Number of teams
-*    int tMember - Number of members on team
 * @Returns:
 *    int - row number in array if found,otherwise -1
 */
-int getTeamNum(int **&team,int target,int t,int tMembers)
+int getTeamNum(int **&team,int target,int t )
 {
 	for (int i = 0; i < t; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < MAXITEMS; j++)
 		{
 			if (team[i][j] == target)
 				return i;
@@ -118,18 +119,18 @@ int getTeamNum(int **&team,int target,int t,int tMembers)
 /**
 * @FunctionName: initTeams
 * @Description:
-*    Adds items to a 2D array
+*    Adds items to a 2D array 
 * @Params:
 *    ifstream &ifile - allows to read from file
 *    int **&team - refernce to 2D array
 *    int &t - Reference to the number of teams
-*    int &tMember - Reference to number of members on team
 * @Returns:
 *    void
 */
-void initTeams(ifstream &ifile,int **&team,int &t,int &tMembers)
+void initTeams(ifstream &ifile,int **&team,int &t)
 {
 	int person;
+	int tMembers;
 
 	//Number of teams
 	ifile >> t;
@@ -142,16 +143,16 @@ void initTeams(ifstream &ifile,int **&team,int &t,int &tMembers)
 		//Number of team members
 		ifile >> tMembers;
 
-		team[i] = new int[10];
+		team[i] = new int[tMembers];
 
 		//Reads each team member
 		for (int j = 0; j < tMembers; j++)
 		{
-			ifile >> person;
+			ifile >> person;	
 			team[i][j] = person;
 		}
 	}
-
+	
 }
 
 /**
@@ -163,11 +164,10 @@ void initTeams(ifstream &ifile,int **&team,int &t,int &tMembers)
 *    teamQueue *&Q - pointer to instance of teamQueue
 *    int **&team - refernce to 2D array
 *    int t - Number of teams
-*    int tMember - Number of members on team
 * @Returns:
 *    void
 */
-void initQueue(ifstream &ifile, teamQueue *&Q,int **&team,int t,int tMember)
+void initQueue(ifstream &ifile, teamQueue *&Q,int **&team,int t )
 {
 	string method;
 	int member;
@@ -185,7 +185,7 @@ void initQueue(ifstream &ifile, teamQueue *&Q,int **&team,int t,int tMember)
 			ifile >> member;
 
 			//Gets team number
-			int id = getTeamNum(team, member,t,tMember);
+			int id = getTeamNum(team, member,t);
 
 			//Puts item in queue
 			Q->enqueue(member, id);
