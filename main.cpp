@@ -38,19 +38,18 @@ int main()
 
 		Q->Print();
 
+		//Free up memory
 		freeArray(team, t);
-
 
 		//Initializes team array
 		initTeams(infile, team, t, tMembers);
 
-		
+
 	}
-	 
+
 	//closes files
 	closeFiles(infile, outfile);
 
-	system("pause");
 	return 0;
 }
 
@@ -83,9 +82,10 @@ void closeFiles(ifstream &ifile, ofstream &ofile)
 void freeArray(int **&team,int row)
 {
 	for (int i = 0; i < row; i++)
-	{
+	{ //Delete subchildren of array
 		delete[] team[i];
 	}
+	//Delete rest of array
 	delete[] team;
 }
 
@@ -118,7 +118,7 @@ int getTeamNum(int **&team,int target,int t,int tMembers)
 /**
 * @FunctionName: initTeams
 * @Description:
-*    Adds items to a 2D array 
+*    Adds items to a 2D array
 * @Params:
 *    ifstream &ifile - allows to read from file
 *    int **&team - refernce to 2D array
@@ -147,11 +147,11 @@ void initTeams(ifstream &ifile,int **&team,int &t,int &tMembers)
 		//Reads each team member
 		for (int j = 0; j < tMembers; j++)
 		{
-			ifile >> person;	
+			ifile >> person;
 			team[i][j] = person;
 		}
 	}
-	
+
 }
 
 /**

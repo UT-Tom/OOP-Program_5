@@ -1,4 +1,4 @@
-//teamQueue.h
+// teamQueue.h
 
 #pragma once
 #include<iostream>
@@ -26,7 +26,7 @@ public:
 
 	//Removes an item from queue
 	int dequeue();
-	
+
 	//Prints out queue
 	void Print();
 
