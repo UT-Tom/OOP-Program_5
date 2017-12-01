@@ -4,9 +4,6 @@
 #include"teamQueue.h"
 using namespace std;
 
-//Max number of members on team
-int const MAXITEMS = 100;
-
 void closeFiles(ifstream&, ofstream&);
 void freeArray(int**&,int);
 int getTeamNum(int**&,int,int);
@@ -29,7 +26,7 @@ int main()
 	//Initializes team array
 	initTeams(infile, team, t);
 
-	
+
 	//Loops until t is 0
 	while (t != 0)
 	{
@@ -105,10 +102,15 @@ void freeArray(int **&team,int row)
 */
 int getTeamNum(int **&team,int target,int t )
 {
+
 	for (int i = 0; i < t; i++)
 	{
-		for (int j = 0; j < MAXITEMS; j++)
+		//Gets number of team members 
+		int tMembers = team[i][0];
+
+		for (int j = 1; j <= tMembers; j++)
 		{
+			//Returns team number
 			if (team[i][j] == target)
 				return i;
 		}
@@ -143,10 +145,13 @@ void initTeams(ifstream &ifile,int **&team,int &t)
 		//Number of team members
 		ifile >> tMembers;
 
-		team[i] = new int[tMembers];
+		team[i] = new int[tMembers + 1];
+
+		//First col on each row contains number of team members
+		team[i][0] = tMembers;
 
 		//Reads each team member
-		for (int j = 0; j < tMembers; j++)
+		for (int j = 1; j <= tMembers; j++)
 		{
 			ifile >> person;	
 			team[i][j] = person;
