@@ -8,12 +8,15 @@ void closeFiles(ifstream&, ofstream&);
 void freeArray(int**&,int);
 int getTeamNum(int**&,int,int);
 void initTeams(ifstream&,int**&,int&);
-void initQueue(ifstream&, teamQueue*&,int**&,int);
+void initQueue(ifstream&,ofstream&, teamQueue*&,int**&,int);
 void openFiles(ifstream&, ofstream&);
+void printBorder(ofstream&);
+void printCaseNumber(ofstream&, int);
 
 int main()
 {
 	int t;
+	int scenario = 1;
 
 	//open files
 	ifstream infile;
@@ -30,20 +33,26 @@ int main()
 	//Loops until t is 0
 	while (t != 0)
 	{
+		printBorder(outfile);
 		//Initializes teamQueue
 		teamQueue *Q = new teamQueue();
 
-		//Adds or removes items to teamQueue
-		initQueue(infile, Q, team, t);
+		//Prints Scenario #
+		printCaseNumber(outfile, scenario);
 
-		Q->Print();
+		//Updates scenario number
+		scenario++;
+
+		//Adds or removes items to teamQueue
+		initQueue(infile,outfile, Q, team, t);
 
 		//Frees memory of team
 		freeArray(team, t);
 
-
 		//Initializes team array
 		initTeams(infile, team, t);	
+
+		printBorder(outfile);
 	}
 	 
 	//closes files
@@ -167,12 +176,12 @@ void initTeams(ifstream &ifile,int **&team,int &t)
 * @Params:
 *    ifstream &ifile - allows to read from file
 *    teamQueue *&Q - pointer to instance of teamQueue
-*    int **&team - refernce to 2D array
+*    int **&team - reference to 2D array
 *    int t - Number of teams
 * @Returns:
 *    void
 */
-void initQueue(ifstream &ifile, teamQueue *&Q,int **&team,int t )
+void initQueue(ifstream &ifile,ofstream &ofile, teamQueue *&Q,int **&team,int t )
 {
 	string method;
 	int member;
@@ -194,19 +203,36 @@ void initQueue(ifstream &ifile, teamQueue *&Q,int **&team,int t )
 
 			//Puts item in queue
 			Q->enqueue(member, id);
+
+			ofile<<Q->Print();
 		}
 		else
 		{
 			//If Q is not empty
-			if(!Q->Empty())
-				Q->dequeue();
+			if (!Q->Empty())
+			{
+				
+				int dequeued = Q->dequeue();
+				ofile << "Dequeued: " << dequeued << endl;
+			}
 			//If queue is empty
 			else
-				cout << "Q is empty" << endl;
+				ofile << "Q is empty" << endl;
 		}
 		//Reads method
 		ifile >> method;
 	}
+
+	ofile << endl;
+	ofile << "FINAL QUEUE:" << endl;
+
+	//Prints final queue
+	if (Q->Empty())
+		ofile << "There is nothing in the queue";
+	else
+		ofile<<Q->Print();
+
+	ofile << endl;
 }
 
 /**
@@ -226,4 +252,15 @@ void openFiles(ifstream &ifile, ofstream &ofile)
 
 	string o = "output.txt";
 	ofile.open(o);
+}
+
+void printBorder(ofstream &ofile)
+{
+	ofile << "**************************************************************";
+	ofile << endl;
+}
+
+void printCaseNumber(ofstream &ofile, int number)
+{
+	ofile << "Scenario #" << number << endl;
 }
