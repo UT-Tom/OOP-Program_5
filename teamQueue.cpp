@@ -22,6 +22,7 @@ int teamQueue::dequeue()
 	int TempData = Front->Data;
 	Node* TempNodePtr = Front;
 	Front = Front->Next;
+	curr = Front;
 	delete TempNodePtr;
 	return TempData;
 }
@@ -119,17 +120,24 @@ void teamQueue:: enqueue(int val,int team)
 }
 
 
-
+/**
+*  MethodName: Print()
+*  Description: prints out queue
+*  Parameters: n/a
+*  Returns: string - string of data
+**/
 //Prints out queue
-void teamQueue:: Print()
+string teamQueue:: Print()
 {
+	string s = "";
 	Node* Temp = Front;
 	while (Temp)
 	{
-		cout << Temp->Data << "->";
+		 s += to_string(Temp->Data) + "->";
 		Temp = Temp->Next;
 	}
-	cout << endl;
+	s += '\n';
+	return s;
 }
 
 //Destructor
