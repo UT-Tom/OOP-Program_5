@@ -1,5 +1,8 @@
 // teamQueue.h
 
+//This is a linked-list based queue that inserts data values next
+//to their "team" members.
+
 #pragma once
 #include<string>
 
