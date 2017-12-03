@@ -17,14 +17,15 @@
 using namespace std;
 
 //function prototypes
-void closeFiles(ifstream&, ofstream&);
+void closeFiles(fstream&, fstream&);
 void freeArray(int**&,int);
 int getTeamNum(int**&,int,int);
-void initTeams(ifstream&,int**&,int&);
-void initQueue(ifstream&,ofstream&, teamQueue<int>*&,int**&,int);
-void openFiles(ifstream&, ofstream&);
-void printBorder(ofstream&);
-void printCaseNumber(ofstream&, int);
+void initTeams(fstream&,int**&,int&);
+void initQueue(fstream&,fstream&, teamQueue<int>*&,int**&,int);
+void openFiles(fstream&, fstream&);
+void printHeading(fstream&);
+void printBorder(fstream&,bool);
+void printCaseNumber(fstream&, int);
 
 int main()
 {
@@ -32,8 +33,7 @@ int main()
 	int scenario = 1;
 
 	//open files
-	ifstream infile;
-	ofstream outfile;
+	fstream infile, outfile;
 	openFiles(infile, outfile);
 
 	//Pointer to pointer of teams
@@ -46,14 +46,16 @@ int main()
 	//Loops until t is 0
 	while (t != 0)
 	{
-		printBorder(outfile);
+		printHeading(outfile);
 		//Initializes teamQueue
 		// teamQueue *Q = new teamQueue();
 		// might need:
 		teamQueue<int> *Q = new teamQueue<int>();
 
 		//Prints Scenario #
-		printCaseNumber(outfile, scenario);
+		printBorder(outfile,false);
+			printCaseNumber(outfile, scenario);
+		printBorder(outfile,false);
 
 		//Updates scenario number
 		scenario++;
@@ -87,7 +89,7 @@ int main()
  *    void
  */
 
-void closeFiles(ifstream &ifile, ofstream &ofile)
+void closeFiles(fstream &ifile, fstream &ofile)
 {
 	ifile.close();
 	ofile.close();
@@ -156,7 +158,7 @@ int getTeamNum(int **&team,int target,int t )
  *    void
  */
 
-void initTeams(ifstream &ifile,int **&team,int &t)
+void initTeams(fstream &ifile,int **&team,int &t)
 {
 	int person;
 	int tMembers;
@@ -200,7 +202,7 @@ void initTeams(ifstream &ifile,int **&team,int &t)
  *    void
  */
 
-void initQueue(ifstream &ifile,ofstream &ofile, teamQueue<int> *&Q,int **&team,int t )
+void initQueue(fstream &ifile,fstream &ofile, teamQueue<int> *&Q,int **&team,int t )
 {
 	string method;
 	int member;
@@ -265,13 +267,71 @@ void initQueue(ifstream &ifile,ofstream &ofile, teamQueue<int> *&Q,int **&team,i
  *    void
  */
 
-void openFiles(ifstream &ifile, ofstream &ofile)
+void openFiles(fstream &ifile, fstream &ofile)
 {
-	string i = "input.txt";
-	ifile.open(i);
 
-	string o = "output.txt";
-	ofile.open(o);
+	#ifdef __linux__
+		system("clear");
+	#endif
+
+	int choice;
+	string i, o;
+
+	cout << "Choose input file:\n1. input.txt\n2. Custom file\n";
+	cin >> choice;
+
+	if(choice != 1 && choice != 2){
+		cout << "Not an option, try again.\n";
+		openFiles(ifile,ofile);
+	} else if(choice == 1) {
+		i = "input.txt";
+	} else {
+		cout << "Name of file: ";
+		cin >> i;
+	}
+
+	#ifdef _WIN32
+		system("cls");
+	#elif __linux__
+		system("clear");
+	#endif
+
+	cout << "Choose output file:\n1. output.txt\n2. Custom file\n";
+	cin >> choice;
+
+	if(choice != 1 && choice != 2){
+		cout << "Not an option, try again.\n";
+		openFiles(ifile,ofile);
+	} else if(choice == 1) {
+		o = "output.txt";
+	} else {
+		cout << "Name of file: ";
+		cin >> o;
+	}
+
+	ifile.open(i, ios::in);
+	ofile.open(o, ios::out);
+
+	if(!ifile.is_open() || !ofile.is_open())
+		cout << "One or both of the files couldn't open. Check the filesnames!\n\n";
+}
+
+/**
+ * @FunctionName: printHeading
+ * @Description:
+ *    Prints out ouput heading
+ * @Params:
+ *    ofstream &ofile - allows to write to file
+ * @Returns:
+ *    void
+ */
+
+void printHeading(fstream &ofile)
+{
+	// string s = "\n";
+	// for(int i = 0; i < 62; i++)
+	// 	s += (type?"=":"*");
+	// ofile << s << "\n\n";
 }
 
 /**
@@ -284,11 +344,13 @@ void openFiles(ifstream &ifile, ofstream &ofile)
  *    void
  */
 
-void printBorder(ofstream &ofile)
-{
-	ofile << "\n**************************************************************\n";
-	ofile << endl;
-}
+ void printBorder(fstream &ofile, bool type)
+ {
+ 	string s;
+ 	for(int i = 0; i < 62; i++)
+ 		s += (type?"=":"*");
+ 	ofile << s << "\n";
+ }
 
 /**
  * @FunctionName: printCaseNumber
@@ -301,7 +363,7 @@ void printBorder(ofstream &ofile)
  *    void
  */
 
-void printCaseNumber(ofstream &ofile, int number)
+void printCaseNumber(fstream &ofile, int number)
 {
-	ofile << "Scenario #" << number << endl;
+	ofile << "Scenario #" << number << "\n";
 }
