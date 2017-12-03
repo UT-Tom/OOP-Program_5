@@ -254,12 +254,31 @@ void openFiles(ifstream &ifile, ofstream &ofile)
 	ofile.open(o);
 }
 
+/**
+* @FunctionName: printBorder
+* @Description:
+*    prints "*" as a border
+* @Params:
+*    ofstream &ofile - allows to write to file
+* @Returns:
+*    void
+*/
 void printBorder(ofstream &ofile)
 {
 	ofile << "**************************************************************";
 	ofile << endl;
 }
 
+/**
+* @FunctionName: printCaseNumber
+* @Description:
+*    prints out case number
+* @Params:
+*    ofstream &ofile - allows to write to file
+*    int number - case number
+* @Returns:
+*    void
+*/
 void printCaseNumber(ofstream &ofile, int number)
 {
 	ofile << "Scenario #" << number << endl;
