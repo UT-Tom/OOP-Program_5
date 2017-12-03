@@ -266,7 +266,7 @@ void openFiles(ifstream &ifile, ofstream &ofile)
 */
 void printBorder(ofstream &ofile)
 {
-	ofile << "**************************************************************";
+	ofile << "\n**************************************************************\n";
 	ofile << endl;
 }
 
