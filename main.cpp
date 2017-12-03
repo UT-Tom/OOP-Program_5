@@ -54,7 +54,7 @@ int main()
 		//Initializes team array
 		initTeams(infile, team, t);
 
-		printBorder(outfile);
+		// printBorder(outfile);
 	}
 
 	//closes files
