@@ -8,7 +8,7 @@ void closeFiles(ifstream&, ofstream&);
 void freeArray(int**&,int);
 int getTeamNum(int**&,int,int);
 void initTeams(ifstream&,int**&,int&);
-void initQueue(ifstream&,ofstream&, teamQueue*&,int**&,int);
+void initQueue(ifstream&,ofstream&, teamQueue<int>*&,int**&,int);
 void openFiles(ifstream&, ofstream&);
 void printBorder(ofstream&);
 void printCaseNumber(ofstream&, int);
@@ -35,9 +35,9 @@ int main()
 	{
 		printBorder(outfile);
 		//Initializes teamQueue
-		teamQueue *Q = new teamQueue();
+		// teamQueue *Q = new teamQueue();
 		// might need:
-		// teamQueue<Node> *Q = new teamQueue();
+		teamQueue<int> *Q = new teamQueue<int>();
 
 		//Prints Scenario #
 		printCaseNumber(outfile, scenario);
@@ -60,7 +60,6 @@ int main()
 	//closes files
 	closeFiles(infile, outfile);
 
-	system("pause");
 	return 0;
 }
 
@@ -183,7 +182,7 @@ void initTeams(ifstream &ifile,int **&team,int &t)
 * @Returns:
 *    void
 */
-void initQueue(ifstream &ifile,ofstream &ofile, teamQueue *&Q,int **&team,int t )
+void initQueue(ifstream &ifile,ofstream &ofile, teamQueue<int> *&Q,int **&team,int t )
 {
 	string method;
 	int member;

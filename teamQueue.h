@@ -2,40 +2,44 @@
 
 #pragma once
 #include<string>
+
 using namespace std;
 
+template<class T>
 struct Node
 {
-	int Data;
+	T Data;
 	int ID;
-	Node* Next;
+	Node<T>* Next;
 };
 
-<template T> class teamQueue
+template<class T> class teamQueue
 {
+
+	// typedef Node<T> Node;
 
 public:
 	//Default constructor
-	teamQueue();
+	teamQueue<T>();
 
 	//Checks if queue is empty
 	bool Empty();
 
 	//Adds an item to queue
-	void enqueue(int,int);
+	void enqueue(T,int);
 
 	//Removes an item from queue
 	int dequeue();
 
 	//Prints out queue
-	void Print();
+	string Print();
 
 	//Destructor
-	~teamQueue();
+	~teamQueue<T>();
 private:
-	Node* Front;
-	Node* Rear;
-	Node *curr;
+	Node<T>* Front;
+	Node<T>* Rear;
+	Node<T>* curr;
 
 };
 
