@@ -16,8 +16,6 @@ struct Node
 template<class T> class teamQueue
 {
 
-	// typedef Node<T> Node;
-
 public:
 	//Default constructor
 	teamQueue<T>();
@@ -29,13 +27,14 @@ public:
 	void enqueue(T,int);
 
 	//Removes an item from queue
-	int dequeue();
+	T dequeue();
 
 	//Prints out queue
 	string Print();
 
 	//Destructor
 	~teamQueue<T>();
+
 private:
 	Node<T>* Front;
 	Node<T>* Rear;

@@ -2,51 +2,70 @@
 
 //This is a linked-list based queue that inserts data values next
 //to their "team" members.
-// #include"teamQueue.h"
 
+/**
+ * @ConstructorName: default
+ * @Description:
+ *    Initializes front, rear, and current pointers to NULL.
+ */
 
-//Default constructor
 template<class T> teamQueue<T>::teamQueue()
 {
 	Front = Rear = curr = NULL;
 }
 
 /**
-*  MethodName: dequeue()
-*  Description: Removes front item in queue
-*  Parameters: n/a
-*  Returns: int - number at the front of queue
-**/
+ * @MethodName: dequeue
+ * @Description:
+ *    Returns front item in queue
+ * @Params:
+ *    n/a
+ * @Returns:
+ *    T - data dequeued
+ */
+
 template<class T>
-int teamQueue<T>::dequeue()
+T teamQueue<T>::dequeue()
 {
-	int TempData = Front->Data;
+	//return temp data
+	T TempData = Front->Data;
+	//move front to next node
 	Node<T>* TempNodePtr = Front;
 	Front = Front->Next;
+	//set current node pointer to front
 	curr = Front;
 	delete TempNodePtr;
 	return TempData;
 }
 
 /**
-*  MethodName: Empty()
-*  Description: Checks if queue is empty
-*  Parameters: n/a
-*  Returns: bool - empty or not
-**/
-template<class T> bool teamQueue<T>:: Empty()
+ * @MethodName: Empty
+ * @Description:
+ *    Checks if queue is empty or not
+ * @Params:
+ *    n/a
+ * @Returns:
+ *    bool - empty or not
+ */
+template<class T>
+bool teamQueue<T>::Empty()
 {
 	return Front == NULL;
 }
 
 /**
-*  MethodName: enqueue()
-*  Description: Adds an item to queue next to its team member
-*  Parameters: int val - a number
-*			   int team - team number
-*  Returns: void
-**/
-template<class T> void teamQueue<T>:: enqueue(T val,int team)
+ * @MethodName: enqueue
+ * @Description:
+ *    Adds an item to queue next to its team member
+ * @Params:
+ *    int val - a number
+ *    int team - team number
+ * @Returns:
+ *    void
+ */
+
+template<class T>
+void teamQueue<T>::enqueue(T val,int team)
 {
 	Node<T>* Temp = new Node<T>;
 	Temp->Data = val;
@@ -120,29 +139,37 @@ template<class T> void teamQueue<T>:: enqueue(T val,int team)
 	}
 }
 
-
 /**
-*  MethodName: Print()
-*  Description: prints out queue
-*  Parameters: n/a
-*  Returns: string - string of data
-**/
-//Prints out queue
-template<class T> string teamQueue<T>:: Print()
+ * @MethodName: Print
+ * @Description:
+ *    Prints out the queue
+ * @Params:
+ *    n/a
+ * @Returns:
+ *    string - string of data
+ */
+
+template<class T>
+string teamQueue<T>::Print()
 {
 	string s = "";
 	Node<T>* Temp = Front;
 	while (Temp)
 	{
 		 s += to_string(Temp->Data) + "->";
-		Temp = Temp->Next;
+		 Temp = Temp->Next;
 	}
 	s += '\n';
 	return s;
 }
 
-//Destructor
-template<class T> teamQueue<T>::~teamQueue()
+/**
+ * @DestructorName: default
+ * @Description:
+ *    Clears Front, Rear, and curr
+ */
+template<class T>
+teamQueue<T>::~teamQueue()
 {
 	Front = Rear = curr = NULL;
 }

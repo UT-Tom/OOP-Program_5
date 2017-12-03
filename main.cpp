@@ -2,8 +2,10 @@
 #include<fstream>
 #include<string>
 #include"teamQueue.h"
+
 using namespace std;
 
+//function prototypes
 void closeFiles(ifstream&, ofstream&);
 void freeArray(int**&,int);
 int getTeamNum(int**&,int,int);
@@ -64,15 +66,16 @@ int main()
 }
 
 /**
-* @FunctionName: closeFiles
-* @Description:
-*    closes opened files
-* @Params:
-*    ifstream &ifile - allows to read from file
-*    ofstream &ofile - allows to write to file
-* @Returns:
-*    void
-*/
+ * @FunctionName: closeFiles
+ * @Description:
+ *    closes opened files
+ * @Params:
+ *    ifstream &ifile - allows to read from file
+ *    ofstream &ofile - allows to write to file
+ * @Returns:
+ *    void
+ */
+
 void closeFiles(ifstream &ifile, ofstream &ofile)
 {
 	ifile.close();
@@ -80,15 +83,16 @@ void closeFiles(ifstream &ifile, ofstream &ofile)
 }
 
 /**
-* @FunctionName: freeArray
-* @Description:
-*    Frees memory in 2D array
-* @Params:
-*    int **&team - refernce to 2D array
-*	 int row - number of rows
-* @Returns:
-*    void
-*/
+ * @FunctionName: freeArray
+ * @Description:
+ *    Frees memory in 2D array
+ * @Params:
+ *    int **&team - refernce to 2D array
+ *	 int row - number of rows
+ * @Returns:
+ *    void
+ */
+
 void freeArray(int **&team,int row)
 {
 	for (int i = 0; i < row; i++)
@@ -100,16 +104,17 @@ void freeArray(int **&team,int row)
 
 
 /**
-* @FunctionName: getTeamNum
-* @Description:
-*    Searches through 2D array and finds team number of item
-* @Params:
-*    int **&team - refernce to 2D array
-*	 int target - item being searched for
-*    int t - Number of teams
-* @Returns:
-*    int - row number in array if found,otherwise -1
-*/
+ * @FunctionName: getTeamNum
+ * @Description:
+ *    Searches through 2D array and finds team number of item
+ * @Params:
+ *    int **&team - refernce to 2D array
+ *	 int target - item being searched for
+ *    int t - Number of teams
+ * @Returns:
+ *    int - row number in array if found,otherwise -1
+ */
+
 int getTeamNum(int **&team,int target,int t )
 {
 
@@ -129,16 +134,17 @@ int getTeamNum(int **&team,int target,int t )
 }
 
 /**
-* @FunctionName: initTeams
-* @Description:
-*    Adds items to a 2D array
-* @Params:
-*    ifstream &ifile - allows to read from file
-*    int **&team - refernce to 2D array
-*    int &t - Reference to the number of teams
-* @Returns:
-*    void
-*/
+ * @FunctionName: initTeams
+ * @Description:
+ *    Adds items to a 2D array
+ * @Params:
+ *    ifstream &ifile - allows to read from file
+ *    int **&team - refernce to 2D array
+ *    int &t - Reference to the number of teams
+ * @Returns:
+ *    void
+ */
+
 void initTeams(ifstream &ifile,int **&team,int &t)
 {
 	int person;
@@ -171,17 +177,18 @@ void initTeams(ifstream &ifile,int **&team,int &t)
 }
 
 /**
-* @FunctionName: initQueue
-* @Description:
-*    Adds or removes item onto/from queue
-* @Params:
-*    ifstream &ifile - allows to read from file
-*    teamQueue *&Q - pointer to instance of teamQueue
-*    int **&team - reference to 2D array
-*    int t - Number of teams
-* @Returns:
-*    void
-*/
+ * @FunctionName: initQueue
+ * @Description:
+ *    Adds or removes item onto/from queue
+ * @Params:
+ *    ifstream &ifile - allows to read from file
+ *    teamQueue *&Q - pointer to instance of teamQueue
+ *    int **&team - reference to 2D array
+ *    int t - Number of teams
+ * @Returns:
+ *    void
+ */
+
 void initQueue(ifstream &ifile,ofstream &ofile, teamQueue<int> *&Q,int **&team,int t )
 {
 	string method;
@@ -237,15 +244,16 @@ void initQueue(ifstream &ifile,ofstream &ofile, teamQueue<int> *&Q,int **&team,i
 }
 
 /**
-* @FunctionName: openFiles
-* @Description:
-*    opens files
-* @Params:
-*    ifstream &ifile - allows to read from file
-*    ofstream &ofile - allows to write to file
-* @Returns:
-*    void
-*/
+ * @FunctionName: openFiles
+ * @Description:
+ *    opens files
+ * @Params:
+ *    ifstream &ifile - allows to read from file
+ *    ofstream &ofile - allows to write to file
+ * @Returns:
+ *    void
+ */
+
 void openFiles(ifstream &ifile, ofstream &ofile)
 {
 	string i = "input.txt";
@@ -256,14 +264,15 @@ void openFiles(ifstream &ifile, ofstream &ofile)
 }
 
 /**
-* @FunctionName: printBorder
-* @Description:
-*    prints "*" as a border
-* @Params:
-*    ofstream &ofile - allows to write to file
-* @Returns:
-*    void
-*/
+ * @FunctionName: printBorder
+ * @Description:
+ *    prints "*" as a border
+ * @Params:
+ *    ofstream &ofile - allows to write to file
+ * @Returns:
+ *    void
+ */
+
 void printBorder(ofstream &ofile)
 {
 	ofile << "\n**************************************************************\n";
@@ -271,15 +280,16 @@ void printBorder(ofstream &ofile)
 }
 
 /**
-* @FunctionName: printCaseNumber
-* @Description:
-*    prints out case number
-* @Params:
-*    ofstream &ofile - allows to write to file
-*    int number - case number
-* @Returns:
-*    void
-*/
+ * @FunctionName: printCaseNumber
+ * @Description:
+ *    prints out case number
+ * @Params:
+ *    ofstream &ofile - allows to write to file
+ *    int number - case number
+ * @Returns:
+ *    void
+ */
+
 void printCaseNumber(ofstream &ofile, int number)
 {
 	ofile << "Scenario #" << number << endl;
