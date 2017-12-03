@@ -1,3 +1,14 @@
+/**
+ * @Name: Jakob Lopez && Tom Johnson
+ * @Description:
+ *    This program implements a list-based queue to solve a team queue
+ *		problem. It also demonstrates our ability to work with templated classes.
+ * @Date:
+ *    12/03/17
+ * @Instructor:
+ *    Dr. Stringfellow
+ */
+
 #include<iostream>
 #include<fstream>
 #include<string>
