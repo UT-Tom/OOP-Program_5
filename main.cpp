@@ -23,7 +23,7 @@ int getTeamNum(int**&,int,int);
 void initTeams(fstream&,int**&,int&);
 void initQueue(fstream&,fstream&, teamQueue<int>*&,int**&,int);
 void openFiles(fstream&, fstream&);
-void printHeading(fstream&);
+void printHeading(fstream&,string);
 void printBorder(fstream&,bool);
 void printCaseNumber(fstream&, int);
 
@@ -46,10 +46,7 @@ int main()
 	//Loops until t is 0
 	while (t != 0)
 	{
-		printHeading(outfile);
 		//Initializes teamQueue
-		// teamQueue *Q = new teamQueue();
-		// might need:
 		teamQueue<int> *Q = new teamQueue<int>();
 
 		//Prints Scenario #
@@ -314,6 +311,8 @@ void openFiles(fstream &ifile, fstream &ofile)
 
 	if(!ifile.is_open() || !ofile.is_open())
 		cout << "One or both of the files couldn't open. Check the filesnames!\n\n";
+
+	printHeading(ofile,i);
 }
 
 /**
@@ -326,12 +325,12 @@ void openFiles(fstream &ifile, fstream &ofile)
  *    void
  */
 
-void printHeading(fstream &ofile)
+void printHeading(fstream &ofile, string input)
 {
-	// string s = "\n";
-	// for(int i = 0; i < 62; i++)
-	// 	s += (type?"=":"*");
-	// ofile << s << "\n\n";
+	printBorder(ofile,true);
+		ofile << "Output run for " << input << "\n";
+	printBorder(ofile,true);
+		ofile << "\n";
 }
 
 /**
