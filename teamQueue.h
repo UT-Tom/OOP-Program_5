@@ -11,7 +11,7 @@ struct Node
 	Node* Next;
 };
 
-class teamQueue
+<template T> class teamQueue
 {
 
 public:
@@ -38,3 +38,5 @@ private:
 	Node *curr;
 
 };
+
+#include "teamQueue.cpp"

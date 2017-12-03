@@ -36,6 +36,8 @@ int main()
 		printBorder(outfile);
 		//Initializes teamQueue
 		teamQueue *Q = new teamQueue();
+		// might need:
+		// teamQueue<Node> *Q = new teamQueue();
 
 		//Prints Scenario #
 		printCaseNumber(outfile, scenario);
@@ -50,11 +52,11 @@ int main()
 		freeArray(team, t);
 
 		//Initializes team array
-		initTeams(infile, team, t);	
+		initTeams(infile, team, t);
 
 		printBorder(outfile);
 	}
-	 
+
 	//closes files
 	closeFiles(infile, outfile);
 
@@ -114,7 +116,7 @@ int getTeamNum(int **&team,int target,int t )
 
 	for (int i = 0; i < t; i++)
 	{
-		//Gets number of team members 
+		//Gets number of team members
 		int tMembers = team[i][0];
 
 		for (int j = 1; j <= tMembers; j++)
@@ -130,7 +132,7 @@ int getTeamNum(int **&team,int target,int t )
 /**
 * @FunctionName: initTeams
 * @Description:
-*    Adds items to a 2D array 
+*    Adds items to a 2D array
 * @Params:
 *    ifstream &ifile - allows to read from file
 *    int **&team - refernce to 2D array
@@ -162,11 +164,11 @@ void initTeams(ifstream &ifile,int **&team,int &t)
 		//Reads each team member
 		for (int j = 1; j <= tMembers; j++)
 		{
-			ifile >> person;	
+			ifile >> person;
 			team[i][j] = person;
 		}
 	}
-	
+
 }
 
 /**
@@ -211,7 +213,7 @@ void initQueue(ifstream &ifile,ofstream &ofile, teamQueue *&Q,int **&team,int t 
 			//If Q is not empty
 			if (!Q->Empty())
 			{
-				
+
 				int dequeued = Q->dequeue();
 				ofile << "Dequeued: " << dequeued << endl;
 			}
