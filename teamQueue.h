@@ -45,4 +45,4 @@ private:
 
 };
 
-#include "teamQueue.cpp"
+#include "teamQueue.inl"
