@@ -1,8 +1,5 @@
 // teamQueue.h
 
-//This is a linked-list based queue that inserts data values next
-//to their "team" members.
-
 #pragma once
 #include<string>
 
@@ -27,7 +24,7 @@ public:
 	bool Empty();
 
 	//Adds an item to queue
-	void enqueue(T,int);
+	void enqueue(T, int);
 
 	//Removes an item from queue
 	T dequeue();
@@ -45,4 +42,4 @@ private:
 
 };
 
-#include "teamQueue.inl"
+#include "teamQueue.cpp"
