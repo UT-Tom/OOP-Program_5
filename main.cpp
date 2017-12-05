@@ -16,15 +16,31 @@
 
 using namespace std;
 
-//function prototypes
+/*******************************PROTOTYPES*****************************************/
+//Closes files
 void closeFiles(ifstream&, ofstream&);
+
+//Frees memory of array
 void freeArray(int**&, int);
+
+//Gets team number of item
 int getTeamNum(int**&, int, int);
+
+//Initializes teams
 void initTeams(ifstream&, int**&, int&);
+
+//Initializes queue
 void initQueue(ifstream&, ofstream&, teamQueue<int>*&, int**&, int);
+
+//Opens files
 void openFiles(ifstream&, ofstream&);
+
+//Prints border of "*"
 void printBorder(ofstream&);
+
+//Prints scenario number
 void printCaseNumber(ofstream&, int);
+/**********************************************************************************/
 
 int main()
 {
@@ -72,6 +88,7 @@ int main()
 	//closes files
 	closeFiles(infile, outfile);
 
+	system("pause");
 	return 0;
 }
 
@@ -239,7 +256,7 @@ void initQueue(ifstream &ifile, ofstream &ofile, teamQueue<int> *&Q, int **&team
 			catch (string message)
 			{
 				ofile << message << endl;
-			}	
+			}
 		}
 		//Reads method
 		ifile >> method;
@@ -270,11 +287,19 @@ void initQueue(ifstream &ifile, ofstream &ofile, teamQueue<int> *&Q, int **&team
 
 void openFiles(ifstream &ifile, ofstream &ofile)
 {
-	string i = "input.txt";
-	ifile.open(i);
+	char inFileName[40];
+	char outFileName[40];
 
-	string o = "output.txt";
-	ofile.open(o);
+	//opens input file
+	cout << "enter input file name : ";
+	cin >> inFileName;
+	ifile.open(inFileName);
+
+
+	//opens output file
+	cout << "enter output file name : ";
+	cin >> outFileName;
+	ofile.open(outFileName);
 }
 
 /**
