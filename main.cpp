@@ -317,6 +317,8 @@ void openFiles(fstream &ifile, fstream &ofile)
 		cout << "One or both of the files couldn't open. Check the filesnames!\n\n";
 
 	printHeading(ofile,i);
+
+	cout << "Processed " << i << " into " << o << "!\n";
 }
 
 /**
@@ -332,7 +334,9 @@ void openFiles(fstream &ifile, fstream &ofile)
 void printHeading(fstream &ofile, string input)
 {
 	printBorder(ofile,true);
-		ofile << "Output run for " << input << "\n";
+		ofile << "Jakob Lopez && Tom Johnson\n";
+	// printBorder(ofile,true);
+		ofile << "Output for " << input << "\n";
 	printBorder(ofile,true);
 		ofile << "\n";
 }
