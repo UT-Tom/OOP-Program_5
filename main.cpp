@@ -16,16 +16,31 @@
 
 using namespace std;
 
-//function prototypes
-void closeFiles(fstream&, fstream&);
-void freeArray(int**&,int);
-int getTeamNum(int**&,int,int);
-void initTeams(fstream&,int**&,int&);
-void initQueue(fstream&,fstream&, teamQueue<int>*&,int**&,int);
-void openFiles(fstream&, fstream&);
-void printHeading(fstream&,string);
-void printBorder(fstream&,bool);
-void printCaseNumber(fstream&, int);
+/*******************************PROTOTYPES*****************************************/
+//Closes files
+void closeFiles(ifstream&, ofstream&);
+
+//Frees memory of array
+void freeArray(int**&, int);
+
+//Gets team number of item
+int getTeamNum(int**&, int, int);
+
+//Initializes teams
+void initTeams(ifstream&, int**&, int&);
+
+//Initializes queue
+void initQueue(ifstream&, ofstream&, teamQueue<int>*&, int**&, int);
+
+//Opens files
+void openFiles(ifstream&, ofstream&);
+
+//Prints border of "*"
+void printBorder(ofstream&);
+
+//Prints scenario number
+void printCaseNumber(ofstream&, int);
+/**********************************************************************************/
 
 int main()
 {
