@@ -18,7 +18,7 @@ using namespace std;
 
 /*******************************PROTOTYPES*****************************************/
 //Closes files
-void closeFiles(ifstream&, ofstream&);
+void closeFiles(fstream&, fstream&);
 
 //Frees memory of array
 void freeArray(int**&, int);
@@ -27,19 +27,22 @@ void freeArray(int**&, int);
 int getTeamNum(int**&, int, int);
 
 //Initializes teams
-void initTeams(ifstream&, int**&, int&);
+void initTeams(fstream&, int**&, int&);
 
 //Initializes queue
-void initQueue(ifstream&, ofstream&, teamQueue<int>*&, int**&, int);
+void initQueue(fstream&, fstream&, teamQueue<int>*&, int**&, int);
 
 //Opens files
-void openFiles(ifstream&, ofstream&);
+void openFiles(fstream&, fstream&);
 
 //Prints border of "*"
-void printBorder(ofstream&);
+void printBorder(fstream&,bool);
 
 //Prints scenario number
-void printCaseNumber(ofstream&, int);
+void printCaseNumber(fstream&, int);
+
+//Prints heading
+void printHeading(fstream&, string);
 /**********************************************************************************/
 
 int main()
