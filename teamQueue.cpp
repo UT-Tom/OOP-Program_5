@@ -9,7 +9,7 @@
  *    Initializes front, rear, and current pointers to NULL.
  */
 
-template<class T> teamQueue<T>::teamQueue()
+template <class T> teamQueue<T>::teamQueue()
 {
 	Front = Rear = curr = NULL;
 }
@@ -24,7 +24,7 @@ template<class T> teamQueue<T>::teamQueue()
  *    T - data dequeued
  */
 
-template<class T>
+template <class T>
 T teamQueue<T>::dequeue()
 {
 	//return temp data
